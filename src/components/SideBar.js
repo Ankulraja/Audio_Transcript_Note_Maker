@@ -36,13 +36,13 @@ const menuItems = [
 export default function Sidebar({ onSelectFilter }) {
   const router = useRouter();
   const isMobile = useMediaQuery("(max-width:600px)");
-  const [selected, setSelected] = useState("Home"); // Track selected button
+  const [selected, setSelected] = useState("Home");
   const [expanded, setExpanded] = useState(false);
   const { user, logout } = useAuth();
 
   const handleMenuClick = (item) => {
     setSelected(item.name);
-    onSelectFilter(item.name); // Pass selected tab to parent
+    onSelectFilter(item.name);
   };
 
   return (
@@ -81,7 +81,6 @@ export default function Sidebar({ onSelectFilter }) {
         ))}
       </List>
 
-      {/* Profile Section */}
       <Box sx={{ position: "relative", p: 1 }}>
         {expanded && (
           <Box
@@ -109,7 +108,7 @@ export default function Sidebar({ onSelectFilter }) {
               Logout
             </Button>
             <Typography variant="body2" sx={{ color: "gray" }}>
-              {user.email}
+              {user?.email}
             </Typography>
           </Box>
         )}
@@ -123,13 +122,13 @@ export default function Sidebar({ onSelectFilter }) {
           onClick={() => setExpanded(!expanded)}
         >
           <Avatar sx={{ bgcolor: "#424242" }}>
-            {user.username ? user.username.charAt(0).toUpperCase() : ""}
+            {user?.username ? user?.username.charAt(0).toUpperCase() : ""}
           </Avatar>
           {!isMobile && (
             <>
               <Box sx={{ flexGrow: 1, ml: 1 }}>
                 <Typography variant="body2" fontWeight="bold">
-                  {user.username}
+                  {user?.username}
                 </Typography>
               </Box>
               <ExpandMoreIcon

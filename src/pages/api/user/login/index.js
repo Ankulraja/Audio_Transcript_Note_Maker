@@ -36,7 +36,7 @@ export default async function handler(req, res) {
       message: "Login successful",
       success: true,
       token,
-      user
+      user,
     });
   } catch (error) {
     console.error("Login Error:", error);

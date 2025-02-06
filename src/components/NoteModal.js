@@ -10,8 +10,6 @@ import {
   Tab,
   Tooltip,
 } from "@mui/material";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FullscreenIcon from "@mui/icons-material/Fullscreen";
 import CloseIcon from "@mui/icons-material/Close";
 import EditIcon from "@mui/icons-material/Edit";
@@ -32,7 +30,7 @@ export default function NoteModal({ open, handleClose, note, onUpdate }) {
   const [showFullContent, setShowFullContent] = useState(false);
   const [uploadedImages, setUploadedImages] = useState(note.imageUrl || []);
   const [hasChanges, setHasChanges] = useState(false);
-  const [loading, setLoading] = useState(false); // Loading state for the save button
+  const [loading, setLoading] = useState(false);
 
   const initialNoteRef = useRef(note);
 
@@ -71,7 +69,7 @@ export default function NoteModal({ open, handleClose, note, onUpdate }) {
   };
 
   const handleSave = async () => {
-    setLoading(true); // Start loading
+    setLoading(true);
 
     const addImage = uploadedImages.filter(
       (img) => !initialNoteRef.current.imageUrl.includes(img)
@@ -102,7 +100,6 @@ export default function NoteModal({ open, handleClose, note, onUpdate }) {
         onUpdate(updatedNote.note);
         setHasChanges(false);
 
-        // Reset the initialNoteRef to the updated note
         initialNoteRef.current = updatedNote.note;
       } else {
         console.error("Failed to update note");
@@ -110,7 +107,7 @@ export default function NoteModal({ open, handleClose, note, onUpdate }) {
     } catch (error) {
       console.error("Error updating note:", error);
     } finally {
-      setLoading(false); // Stop loading
+      setLoading(false);
     }
   };
 
@@ -134,7 +131,6 @@ export default function NoteModal({ open, handleClose, note, onUpdate }) {
           borderRadius: 2,
         }}
       >
-        {/* Header */}
         <Box display="flex" justifyContent="space-between" alignItems="center">
           <IconButton onClick={() => setIsFullscreen(!isFullscreen)}>
             <FullscreenIcon />
@@ -146,7 +142,6 @@ export default function NoteModal({ open, handleClose, note, onUpdate }) {
           </Box>
         </Box>
 
-        {/* Title Section */}
         <Box
           sx={{
             mt: 2,
@@ -184,7 +179,6 @@ export default function NoteModal({ open, handleClose, note, onUpdate }) {
           </Typography>
         </Box>
 
-        {/* Audio Section */}
         {note.audios.length > 0 && (
           <Box
             sx={{
@@ -211,7 +205,6 @@ export default function NoteModal({ open, handleClose, note, onUpdate }) {
           </Box>
         )}
 
-        {/* Tabs */}
         <Tabs
           value={tabIndex}
           onChange={(e, newIndex) => setTabIndex(newIndex)}
@@ -223,7 +216,6 @@ export default function NoteModal({ open, handleClose, note, onUpdate }) {
           <Tab label="Speak Transcript" />
         </Tabs>
 
-        {/* Content Section */}
         <Box
           sx={{
             mt: 2,
@@ -247,7 +239,6 @@ export default function NoteModal({ open, handleClose, note, onUpdate }) {
                 : `${note.content.substring(0, 100)}...`}
             </Typography>
 
-            {/* Copy Button on Right */}
             <Tooltip title="Copy Content">
               <IconButton onClick={handleCopy}>
                 <ContentCopyIcon />
@@ -263,7 +254,6 @@ export default function NoteModal({ open, handleClose, note, onUpdate }) {
           </Button>
         </Box>
 
-        {/* Image Section */}
         <Box mt={2} display="flex" alignItems="center" flexWrap="wrap" gap={1}>
           {uploadedImages.map((img, index) => (
             <Box
@@ -305,7 +295,6 @@ export default function NoteModal({ open, handleClose, note, onUpdate }) {
             </Box>
           ))}
 
-          {/* Upload Button */}
           <IconButton component="label">
             <input
               type="file"
@@ -319,13 +308,12 @@ export default function NoteModal({ open, handleClose, note, onUpdate }) {
           </IconButton>
         </Box>
 
-        {/* Save Button */}
         <Box sx={{ mt: 2, display: "flex", justifyContent: "flex-end" }}>
           <Button
             variant="contained"
             color="primary"
             onClick={handleSave}
-            disabled={!hasChanges || loading} // Disable button when loading
+            disabled={!hasChanges || loading}
           >
             {loading ? (
               <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>

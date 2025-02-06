@@ -17,13 +17,11 @@ export default function FilterBar({ onSearch, onSort }) {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
-  // Handle real-time search input
   const handleSearchChange = (e) => {
     setSearch(e.target.value);
-    onSearch(e.target.value); // Pass the search term to parent
+    onSearch(e.target.value);
   };
 
-  // Handle sort menu
   const handleSortClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -31,7 +29,7 @@ export default function FilterBar({ onSearch, onSort }) {
   const handleSortClose = (sortType) => {
     setAnchorEl(null);
     if (sortType) {
-      onSort(sortType); // Pass sorting type to parent
+      onSort(sortType);
     }
   };
 
@@ -50,7 +48,6 @@ export default function FilterBar({ onSearch, onSort }) {
         flexWrap: "wrap",
       }}
     >
-      {/* Search Bar */}
       <TextField
         variant="standard"
         placeholder="Search"
@@ -74,16 +71,24 @@ export default function FilterBar({ onSearch, onSort }) {
         }}
       />
 
-      {/* Sort Button */}
       <IconButton onClick={handleSortClick}>
         <SortIcon sx={{ color: "#424242" }} />
-        <Typography sx={{ fontSize: "14px", color: "#424242" }}>Sort</Typography>
+        <Typography sx={{ fontSize: "14px", color: "#424242" }}>
+          Sort
+        </Typography>
       </IconButton>
 
-      {/* Sort Menu */}
-      <Menu anchorEl={anchorEl} open={open} onClose={() => handleSortClose(null)}>
-        <MenuItem onClick={() => handleSortClose("asc")}>A-Z (New to Old)</MenuItem>
-        <MenuItem onClick={() => handleSortClose("desc")}>Z-A (Old to New)</MenuItem>
+      <Menu
+        anchorEl={anchorEl}
+        open={open}
+        onClose={() => handleSortClose(null)}
+      >
+        <MenuItem onClick={() => handleSortClose("asc")}>
+          A-Z (New to Old)
+        </MenuItem>
+        <MenuItem onClick={() => handleSortClose("desc")}>
+          Z-A (Old to New)
+        </MenuItem>
       </Menu>
     </Box>
   );

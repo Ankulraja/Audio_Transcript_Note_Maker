@@ -258,8 +258,6 @@ export default function NoteCard({ note, onDelete, onUpdate }) {
           </Box>
         </Box>
       </Modal>
-
-      {/* Note Modal */}
       <NoteModal
         open={open}
         handleClose={() => setOpen(false)}

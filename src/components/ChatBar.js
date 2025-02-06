@@ -203,7 +203,6 @@ export default function ChatBar({onNewNote}) {
 
   return (
     <>
-      {/* Chat Bar */}
       <Box
         ref={containerRef}
         sx={{

@@ -6,20 +6,21 @@ export default async function handler(req, res) {
 
   if (req.method === "POST") {
     try {
-      const { title, content, imageUrl, audioUrl,favourites,userId} = req.body;
-    console.log("...UserId ...",userId);
+      const { title, content, imageUrl, audioUrl, favourites, userId } =
+        req.body;
       const newNote = new Note({
         title,
         content,
         imageUrl: imageUrl || [],
         audios: audioUrl || [],
         favourites: favourites || false,
-        user:userId
+        user: userId,
       });
 
       await newNote.save();
-      return res.status(201).json({ message: "Note saved successfully!", note: newNote });
-
+      return res
+        .status(201)
+        .json({ message: "Note saved successfully!", note: newNote });
     } catch (error) {
       return res.status(500).json({ error: error.message });
     }

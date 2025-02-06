@@ -25,10 +25,8 @@ export default function SignUpPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [touched, setTouched] = useState({ username: false, email: false });
 
-  // Email validation regex
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-  // Check if the username contains only numbers
   const isNumeric = (str) => /^\d+$/.test(str);
 
   const onSignUp = async () => {
@@ -45,11 +43,9 @@ export default function SignUpPage() {
       setLoading(true);
       setError("");
       const response = await axios.post("/api/user/signup", user);
-      console.log("Signup successful", response.data);
       router.push("/login");
     } catch (error) {
       setError("Signup failed, please try again.");
-      console.log("Signup failed", error.message);
     } finally {
       setLoading(false);
     }

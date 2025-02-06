@@ -22,7 +22,6 @@ export default function LoginPage() {
   const [buttonDisabled, setButtonDisabled] = useState(true);
   const [touched, setTouched] = useState({ email: false, password: false });
   const { login } = useAuth(); 
-  // Email validation regex
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   
   const onLogin = async () => {
@@ -35,9 +34,7 @@ export default function LoginPage() {
       setLoading(true);
       setError("");
       const response = await axios.post("/api/user/login", user);
-      console.log("Response", response.data);
       if (response.status === 200) {
-        console.log("Login successful", response.data);
         login(response.data.token,response.data.user);
         router.push("/dashboard");
       } else {

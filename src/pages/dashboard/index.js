@@ -19,19 +19,14 @@ const Index = () => {
   return (
     <Box sx={{ height: "calc(100vh - 65px)" }}>
       <Box sx={{ height: "100%", display: "flex", flexDirection: "row" }}>
-        {/* Sidebar */}
         <Box sx={{ height: "100%", width: "18%" }}>
           <SideBar onSelectFilter={setSelectedFilter} />
         </Box>
 
-        {/* Right Section */}
         <Box sx={{ display: "flex", flexDirection: "column", width: "100%", position: "relative" }}>
-          {/* Filter Bar */}
           <Box sx={{ minHeight: "10%", width: "100%" }}>
             <FilterBar onSearch={setSearchQuery} onSort={setSortOrder} />
           </Box>
-
-          {/* Notes Section */}
           <Box sx={{ height: "90%", overflowY: "scroll",paddingBottom:"100px" }}>
             <NoteSection 
               selectedFilter={selectedFilter} 
@@ -41,8 +36,6 @@ const Index = () => {
               onNewNote={handleNewNote}
             />
           </Box>
-
-          {/* Bottom Chat Bar */}
           <Box
             sx={{
               maxHeight: "10%",
