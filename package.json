@@ -1,0 +1,52 @@
+{
+  "name": "sethi-estate-agency",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "post-update": "echo \"codesandbox preview only, need an update\" && pnpm update --latest"
+  },
+  "dependencies": {
+    "@emotion/cache": "latest",
+    "@emotion/react": "^11.13.3",
+    "@emotion/server": "latest",
+    "@emotion/styled": "^11.13.0",
+    "@mui/icons-material": "latest",
+    "@mui/material": "^6.1.4",
+    "@mui/material-nextjs": "latest",
+    "@reduxjs/toolkit": "^2.5.1",
+    "@types/axios": "^0.9.36",
+    "@types/styled-components": "^5.1.34",
+    "aws-sdk": "^2.1691.0",
+    "axios": "^1.7.9",
+    "bcryptjs": "^2.4.3",
+    "date-fns": "^4.1.0",
+    "dotenv": "^16.4.5",
+    "joi": "^17.13.3",
+    "js-cookie": "^3.0.5",
+    "jsonwebtoken": "^9.0.2",
+    "lucide-react": "^0.447.0",
+    "mongodb": "^6.9.0",
+    "mongoose": "^8.7.1",
+    "next": "latest",
+    "nodemailer": "^6.10.0",
+    "prop-types": "latest",
+    "punycode": "^2.3.1",
+    "react": "latest",
+    "react-dom": "latest",
+    "react-icons": "^5.3.0",
+    "react-redux": "^9.2.0",
+    "react-slick": "^0.30.2",
+    "slick-carousel": "^1.8.1",
+    "slugify": "^1.6.6",
+    "styled-components": "^6.1.13"
+  },
+  "devDependencies": {
+    "@types/nodemailer": "^6.4.17",
+    "eslint": "^8.57.1",
+    "eslint-config-next": "^14.2.15"
+  }
+}
