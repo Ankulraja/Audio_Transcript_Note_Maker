@@ -38,7 +38,7 @@ const Index = () => {
           </Box>
           <Box
             sx={{
-              maxHeight: "10%",
+              // maxHeight: "10%",
               width: "70%",
               position: "absolute",
               zIndex:"10px",

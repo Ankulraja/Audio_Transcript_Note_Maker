@@ -30,7 +30,7 @@ const RoundedButton = styled(Button)({
   },
 });
 
-export default function ChatBar({onNewNote}) {
+export default function ChatBar({ onNewNote }) {
   const [message, setMessage] = useState("");
   const [isRecording, setIsRecording] = useState(false);
   const [countdown, setCountdown] = useState(60);
@@ -43,7 +43,7 @@ export default function ChatBar({onNewNote}) {
   const [loading, setLoading] = useState(false);
   const mediaRecorderRef = useRef(null);
   const audioChunksRef = useRef([]);
-  let recognition = null;
+  const recognitionRef = useRef(null);
   const { user } = useAuth();
 
   const theme = useTheme();
@@ -86,22 +86,22 @@ export default function ChatBar({onNewNote}) {
       ) {
         const SpeechRecognition =
           window.SpeechRecognition || window.webkitSpeechRecognition;
-        recognition = new SpeechRecognition();
-        recognition.continuous = true;
-        recognition.interimResults = false;
-        recognition.lang = "en-US";
+        recognitionRef.current = new SpeechRecognition();
+        recognitionRef.current.continuous = true;
+        recognitionRef.current.interimResults = false;
+        recognitionRef.current.lang = "en-US";
 
-        recognition.onresult = (event) => {
+        recognitionRef.current.onresult = (event) => {
           const transcript =
             event.results[event.results.length - 1][0].transcript;
           setMessage((prev) => prev + " " + transcript);
         };
 
-        recognition.onerror = (event) => {
+        recognitionRef.current.onerror = (event) => {
           console.error("Speech recognition error:", event.error);
         };
 
-        recognition.start();
+        recognitionRef.current.start();
       }
 
       setTimeout(() => {
@@ -113,8 +113,8 @@ export default function ChatBar({onNewNote}) {
   };
 
   const stopRecording = () => {
-    if (recognition) {
-      recognition.stop();
+    if (recognitionRef.current) {
+      recognitionRef.current.stop();
     }
 
     if (mediaRecorderRef.current) {

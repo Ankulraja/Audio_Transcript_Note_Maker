@@ -24,7 +24,6 @@ import { uploadToCloudinary } from "../utils/cloudinary";
 export default function NoteModal({ open, handleClose, note, onUpdate }) {
   const [title, setTitle] = useState(note.title);
   const [isEditingTitle, setIsEditingTitle] = useState(false);
-  const [isFavorite, setIsFavorite] = useState(note.favourites);
   const [tabIndex, setTabIndex] = useState(0);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [showFullContent, setShowFullContent] = useState(false);
@@ -36,17 +35,12 @@ export default function NoteModal({ open, handleClose, note, onUpdate }) {
 
   useEffect(() => {
     const isTitleChanged = title !== initialNoteRef.current.title;
-    const isFavoriteChanged = isFavorite !== initialNoteRef.current.favourites;
     const areImagesChanged =
       JSON.stringify(uploadedImages) !==
       JSON.stringify(initialNoteRef.current.imageUrl);
 
-    setHasChanges(isTitleChanged || isFavoriteChanged || areImagesChanged);
-  }, [title, isFavorite, uploadedImages]);
-
-  const handleFavoriteToggle = () => {
-    setIsFavorite(!isFavorite);
-  };
+    setHasChanges(isTitleChanged || areImagesChanged);
+  }, [title, uploadedImages]);
 
   const handleCopy = () => {
     navigator.clipboard.writeText(note.content);
@@ -81,7 +75,6 @@ export default function NoteModal({ open, handleClose, note, onUpdate }) {
     const updateData = {
       noteId: note._id,
       title,
-      favourites: isFavorite,
       addImage: addImage.length > 0 ? addImage : undefined,
       removeImage: removeImage.length > 0 ? removeImage : undefined,
     };
