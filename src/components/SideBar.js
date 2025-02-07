@@ -24,10 +24,6 @@ const menuItems = [
     icon: <HomeIcon sx={{ color: "#673AB7" }} />,
   },
   {
-    name: "All",
-    icon: <ListIcon sx={{ color: "#673AB7" }} />,
-  },
-  {
     name: "Favourites",
     icon: <StarBorderIcon sx={{ color: "#673AB7" }} />,
   },
